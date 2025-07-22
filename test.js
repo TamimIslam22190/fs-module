@@ -12,7 +12,7 @@ async function writeAndReadFile() {
 
 writeAndReadFile();
 
-// Folder creation function stays the same
+// Folder creation if not exist
 const myFolder = "upload";
 
 const createFolder = async (myFolder) => {
@@ -39,3 +39,16 @@ async function appendToFile(filename, data) {
 }
 
 appendToFile("tamim.txt", "sammu i love you");
+
+
+// Folder delete if not exist
+const deleteFolder = async (myFolder) => {
+  try {
+    await fs.access(myFolder);
+    await fs.rm(myFolder,{recursive:true,force:true});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+deleteFolder(myFolder);
